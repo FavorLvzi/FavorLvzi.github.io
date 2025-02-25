@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Linux" style=color:#006674>
+                <a href="/tags/Linux" style=color:#6484be>
                     Linux
                 </a>
             </span>
@@ -217,7 +217,7 @@
 <h2 id="准备工作"><a class="markdownIt-Anchor" href="#准备工作"></a> 准备工作</h2>
 <p><strong>总述</strong>：安装Hexo引擎所需基础环境Node.js，安装npm以管理Node.js包，安装Git以提交代码到Github(本项目将代码托管到<a href="(https://github.com/FavorLvzi/FavorLvzi.github.io)" title="Github项目仓库">Github</a>)，当然也可以选择Gitlab、GitCode等进行代码管理。</p>
 <h3 id="安装nodejs"><a class="markdownIt-Anchor" href="#安装nodejs"></a> 安装Node.js</h3>
-<p>在Ubuntu 22.04上通过apt最高只能安装到12版本的Node.js,所以这里推荐使用nvm安装更高版本的Node.js，具体步骤如下(非root用户请自行加<code>sudo</code>,进行安装前都建议先进行<code>apt update</code>)。</p>
+<p>在Ubuntu 22.04上通过apt最高只能安装到12版本的Node.js,所以这里推荐使用nvm安装更高版本的Node.js，具体步骤如下(非root用户请自行加&quot;sudo&quot;,进行安装前都建议先进行&quot;apt update&quot;)。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#使用curl或者wget下载nvm install.sh文件,这里的URL下载地址可通过https://github.akams.cn/进行代理</span><br><span class="line">curl -o https://github.7boe.top/https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash</span><br><span class="line"></span><br><span class="line"># 刷新source，让nvm命令生效</span><br><span class="line">source ~/.nvm/nvm.sh</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line"># 验证一下nvm是否成功部署</span><br><span class="line">root@ubuntu2204:/var/www# nvm -v</span><br><span class="line">0.39.3</span><br><span class="line"></span><br><span class="line"># 使用nvm安装Node.js指定版本(若使用新版本的Hexo7，官方推荐最低安装Node18)</span><br><span class="line">nvm install 22.14.0</span><br></pre></td></tr></table></figure>
 <h3 id="安装npm"><a class="markdownIt-Anchor" href="#安装npm"></a> 安装npm</h3>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install npm</span><br><span class="line"></span><br><span class="line"># 提前更换npm镜像源（这里以淘宝镜像源为例），后续安装插件会用到</span><br><span class="line">npm config set  registry &quot;https://registry.npmmirror.com/&quot;</span><br></pre></td></tr></table></figure>
@@ -233,13 +233,13 @@
 <p>观察一下项目根目录：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:/var/www/hexo-next# ls -l</span><br><span class="line">total 128</span><br><span class="line">-rw-r--r--   1 root root     0 Feb 19 10:52 _config.landscape.yml</span><br><span class="line">-rw-r--r--   1 root root  2443 Feb 19 10:52 _config.yml</span><br><span class="line">drwxr-xr-x 214 root root 12288 Feb 19 10:52 node_modules</span><br><span class="line">-rw-r--r--   1 root root   615 Feb 19 10:52 package.json</span><br><span class="line">-rw-r--r--   1 root root 98036 Feb 19 10:52 package-lock.json</span><br><span class="line">drwxr-xr-x   2 root root  4096 Feb 19 10:52 scaffolds</span><br><span class="line">drwxr-xr-x   3 root root  4096 Feb 19 10:52 source</span><br><span class="line">drwxr-xr-x   2 root root  4096 Feb 19 10:52 themes</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>_config.yml</code>为Hexo项目全局YML配置文件，诸如git、主题等皆会在此配置</li>
-<li><code>_config.landscape.yml</code>为默认的Landscape主题配置文件，更换Next主题后可删除</li>
-<li><code>node_modules</code>放着Hexo基础项目所需的包，安装npm也是为了管理这些包</li>
-<li>两个<code>.json</code>文件里记录了本项目所有包的版本，如果将该项目迁移到Docker或者其他系统中，均需要使用json文件进行构建</li>
-<li><code>scaffolds</code>里放着各种模板文件，Hexo项目最终是使用静态资源进行部署，将代码提交到GIthub时，也是提交的静态资源文件，而scaffolds则规定了Hexo需要生成静态资源的模板</li>
-<li><code>source</code>里放着各种本地资源文件，比如md文章文件。理应来说，图片等本地资源也需要放在此处，但在Next等流行主题项目结构里，图片等都是放在themes主题文件夹下的source里</li>
-<li><code>themes</code>存放着主题所需的所有文件，如果你下载了两个主题比如ParticleX、Next，则此处也会有两个以主题名字命名的父目录，每个父目录下存放着该主题所需的所有文件</li>
+<li>_config.yml：Hexo项目全局YML配置文件，诸如git、主题等皆会在此配置</li>
+<li>_config.landscape.yml：默认的Landscape主题配置文件，更换Next主题后可删除</li>
+<li>node_modules：放着Hexo基础项目所需的包，安装npm也是为了管理这些包</li>
+<li>*.json：两个json文件里记录了本项目所有包的版本，如果将该项目迁移到Docker或者其他系统中，均需要使用json文件进行构建</li>
+<li>scaffolds：放着各种模板文件，Hexo项目最终是使用静态资源进行部署，将代码提交到GIthub时，也是提交的静态资源文件，而scaffolds则规定了Hexo需要生成静态资源的模板</li>
+<li>source：放着各种本地资源文件，比如md文章文件。理应来说，图片等本地资源也需要放在此处，但在Next等流行主题项目结构里，图片等都是放在themes主题文件夹下的source里</li>
+<li>themes：存放着主题所需的所有文件，如果你下载了两个主题比如ParticleX、Next，则此处也会有两个以主题名字命名的父目录，每个父目录下存放着该主题所需的所有文件</li>
 </ul>
 <hr />
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hexo三连！cl即clean，用于清理静态缓存；g即genrate，用于生成静态资源；s即server，开启hexo本地服务；</span><br><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
@@ -250,21 +250,21 @@
 <h2 id="hexo-next主题基础配置"><a class="markdownIt-Anchor" href="#hexo-next主题基础配置"></a> Hexo Next主题基础配置</h2>
 <p>这里以流行的Next为例，其他主题同理。其他主题预览请访问<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes | Hexo</a></p>
 <h3 id="安装next主题"><a class="markdownIt-Anchor" href="#安装next主题"></a> 安装Next主题</h3>
-<p>本站之前是使用克隆源码到项目中的方式，但使用此方法无法查看Next主题的版本，并且在Hexo7及以后，官方也不推荐此方法，于是便使用了<code>npm install</code>的方式。在开始前请确保更换了npm镜像，未更换的请自行参考<a href="#%E5%AE%89%E8%A3%85npm">安装npm</a>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 卸载默认主题</span><br><span class="line">npm uninstall hexo-theme-landscape --save</span><br><span class="line"></span><br><span class="line"># 删除根目录下的默认主题配置yml文件</span><br><span class="line">rm -f _config.landscape.yml</span><br><span class="line"></span><br><span class="line"># 安装Next主题最新版</span><br><span class="line">npm install hexo-theme-next@latest --save</span><br><span class="line"></span><br><span class="line"># 更改主题文件到常用位置</span><br><span class="line">cp -r node_modules/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"># 更改根目录下的_config.yml文件配置，将主题切换为next</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p>本站之前是使用克隆源码到项目中的方式，但使用此方法无法查看Next主题的版本，并且在Hexo7及以后，官方也不推荐此方法，于是便使用了&quot;npm install的方式。在开始前请确保更换了npm镜像，未更换的请自行参考<a href="#%E5%AE%89%E8%A3%85npm">安装npm</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 卸载默认主题</span><br><span class="line">npm uninstall hexo-theme-landscape --save</span><br><span class="line"></span><br><span class="line"># 删除根目录下的默认主题配置yml文件</span><br><span class="line">rm -f _config.landscape.yml</span><br><span class="line"></span><br><span class="line"># 安装Next主题最新版</span><br><span class="line">npm install hexo-theme-next@latest --save</span><br><span class="line"></span><br><span class="line"># 更改主题文件到常用位置</span><br><span class="line">mv -r node_modules/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"># 更改根目录下的_config.yml文件配置，将主题切换为next</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 <p>观察一下Next主题目录结构</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:/var/www/hexo-next# ls  themes/next</span><br><span class="line">total 80</span><br><span class="line">-rw-r--r-- 1 root root 29660 Feb 19 13:03 _config.yml</span><br><span class="line">drwxr-xr-x 4 root root  4096 Feb 19 13:03 docs</span><br><span class="line">drwxr-xr-x 2 root root  4096 Feb 19 13:03 languages</span><br><span class="line">drwxr-xr-x 6 root root  4096 Feb 19 13:03 layout</span><br><span class="line">-rw-r--r-- 1 root root  2955 Feb 19 13:03 LICENSE.md</span><br><span class="line">-rw-r--r-- 1 root root  1148 Feb 19 13:03 package.json</span><br><span class="line">-rw-r--r-- 1 root root  9484 Feb 19 13:03 README.md</span><br><span class="line">drwxr-xr-x 6 root root  4096 Feb 19 13:03 scripts</span><br><span class="line">drwxr-xr-x 5 root root  4096 Feb 19 13:03 source</span><br><span class="line">-rw-r--r-- 1 root root  4836 Feb 19 13:03 _vendors.yml</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>_config.yml</code>：通常是配置文件，用于存储整个项目或主题的各种配置参数，比如站点信息、主题相关设置等</li>
-<li><code>LICENSE.md</code>：包含项目的许可证信息，说明项目的使用许可条款等</li>
-<li><code>package.json</code>：记录项目的元数据，包括依赖项、脚本命令等信息，用于管理项目的依赖和构建等操作。</li>
-<li><code>README.md</code>：一般是项目的说明文档，介绍项目是什么、如何使用、安装步骤等相关信息，起到引导用户了解和使用项目的作用</li>
-<li><code>_vendors.yml</code>：与外部供应商、插件或者特定资源相关的配置文件</li>
-<li><code>docs</code>：通常用于存放文档相关的内容，比如项目的使用文档、说明文档等相关的源文件</li>
-<li><code>languages</code>：用于存放多语言相关的配置或文件，以支持项目的多语言特性</li>
-<li><code>layout</code>：存放页面布局相关的文件，用于定义网站页面的结构和样式布局</li>
-<li><code>scripts</code>：用来存放脚本文件，可能是自动化脚本、构建脚本、测试脚本等，用于辅助项目的开发、部署等流程</li>
-<li><code>source</code>：存放项目源文件的目录，比如主题的模板文件、内容文件等。</li>
+<li>_config.yml：通常是配置文件，用于存储整个项目或主题的各种配置参数，比如站点信息、主题相关设置等</li>
+<li><a target="_blank" rel="noopener" href="http://LICENSE.md">LICENSE.md</a>：包含项目的许可证信息，说明项目的使用许可条款等</li>
+<li>package.json：记录项目的元数据，包括依赖项、脚本命令等信息，用于管理项目的依赖和构建等操作。</li>
+<li><a target="_blank" rel="noopener" href="http://README.md">README.md</a>：一般是项目的说明文档，介绍项目是什么、如何使用、安装步骤等相关信息，起到引导用户了解和使用项目的作用</li>
+<li>_vendors.yml：与外部供应商、插件或者特定资源相关的配置文件</li>
+<li>docs：通常用于存放文档相关的内容，比如项目的使用文档、说明文档等相关的源文件</li>
+<li>languages：用于存放多语言相关的配置或文件，以支持项目的多语言特性</li>
+<li>layout：存放页面布局相关的文件，用于定义网站页面的结构和样式布局</li>
+<li>scripts：用来存放脚本文件，可能是自动化脚本、构建脚本、测试脚本等，用于辅助项目的开发、部署等流程</li>
+<li>source：存放项目源文件的目录，比如主题的模板文件、内容文件等。</li>
 </ul>
 <hr />
 <p>hexo三连后刷新浏览器页面，观察主题是否切换成功<br />
@@ -282,18 +282,25 @@
 </li>
 <li>
 <p>Writing</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 加入以下内容</span><br><span class="line">highlight:  </span><br><span class="line">line_number: false #取消代码块行号显示  </span><br><span class="line">auto_detect: false  </span><br><span class="line">tab_replace: &#x27;&#x27;  </span><br><span class="line">wrap: true  </span><br><span class="line">hljs: false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 加入以下内容</span><br><span class="line">highlight:  </span><br><span class="line">  line_number: false #取消代码块行号显示  </span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p><em>本站额外添加的内容</em></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在页面角落添加看板娘  </span><br><span class="line">live2d:   </span><br><span class="line">  enable: true  </span><br><span class="line">  scriptFrom: local  </span><br><span class="line">  pluginRootPath: live2dw/  </span><br><span class="line">  pluginJsPath: lab/  </span><br><span class="line">  pluginModelPath: assets/  </span><br><span class="line">  tagMode: false  </span><br><span class="line">  debug: false  </span><br><span class="line">  model:  </span><br><span class="line">    #添加模型的名字  </span><br><span class="line">    use: live2d-widget-model-shizuku  </span><br><span class="line">  display:   </span><br><span class="line">    position: right  </span><br><span class="line">    hOffset: 360  # 水平偏移量（正数向右，负数向左,单位px）  </span><br><span class="line">  mobile:  </span><br><span class="line">    show: true  </span><br><span class="line">  react:  </span><br><span class="line">    opacity: 0.9</span><br><span class="line">    </span><br><span class="line"># 安装live2d模型支持</span><br><span class="line">npm install hexo-helper-live2d --save</span><br><span class="line"># 安装你所需的live2d具体的模型,这里以本站shizuku为例</span><br><span class="line">npm install live2d-widget-model-shizuku --save </span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用hexo-tag-aplayer插件并添加MeingJS 支持,在文章页面 插入网易云音乐 </span><br><span class="line">aplayer:  </span><br><span class="line">  meting: true</span><br><span class="line"></span><br><span class="line"># 安装 hexo-tag-aplayer</span><br><span class="line">npm install hexo-tag-aplayer --save</span><br><span class="line"></span><br><span class="line"># 在文章中使用插件插入音乐</span><br><span class="line">&#123;% meting  &quot;9911211145&quot; &quot;netease&quot; &quot;playlist&quot; &quot;volume:0.3&quot; %&#125; </span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装hexo-excerpt，实现文章自动折叠  </span><br><span class="line"># https://shirynl.github.io/2025/01/27/unfold-home/#more  </span><br><span class="line">excerpt:  </span><br><span class="line">  depth: 2  # 摘录的深度，即生成的摘录内容所包含的层级标题数量  </span><br><span class="line">  excerpt_excludes: []  # 不生成摘录的页面列表  </span><br><span class="line">  more_excludes: [] # 不使用&lt;!-- more --&gt;标签的页面列表  </span><br><span class="line">  hideWholePostExcerpts: true # 是否隐藏全文摘录（当文章较短时，可能不需要摘录）</span><br><span class="line"></span><br><span class="line"># 安装hexo-excerpt</span><br><span class="line">npm install hexo-excerpt --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用hexo-tag-aplayer插件并添加MeingJS 支持,在文章页面插入网易云音乐 </span><br><span class="line">aplayer:  </span><br><span class="line">  meting: true</span><br><span class="line"></span><br><span class="line"># 安装 hexo-tag-aplayer</span><br><span class="line">npm install hexo-tag-aplayer --save</span><br><span class="line"></span><br><span class="line"># 在文章中使用插件插入音乐</span><br><span class="line">&#123;% meting  &quot;9911211145&quot; &quot;netease&quot; &quot;playlist&quot; &quot;volume:0.3&quot; %&#125;</span><br><span class="line"></span><br><span class="line"># 在非文章页面使用外链插入音乐（无需使用aplayer插件）</span><br><span class="line"># 以网易云音乐为例，登录网易云音乐网页版，找到音乐或者列表，然后点击生成外链</span><br><span class="line"># 接着将该iframe标签包裹到div板块中，插入你需要显示音乐的页面的代码中，示例如下</span><br><span class="line">&lt;div id=&quot;music163player&quot;&gt;</span><br><span class="line">  &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=歌曲ID&amp;auto=1&amp;height=66&quot;&gt;</span><br><span class="line">  &lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装hexo-excerpt，实现文章自动折叠 </span><br><span class="line">npm install hexo-excerpt --save </span><br><span class="line"></span><br><span class="line"># 参考https://shirynl.github.io/2025/01/27/unfold-home/#more  </span><br><span class="line">excerpt:  </span><br><span class="line">  depth: 2  # 摘录的深度，即生成的摘录内容所包含的层级标题数量  </span><br><span class="line">  excerpt_excludes: []  # 不生成摘录的页面列表  </span><br><span class="line">  more_excludes: [] # 不使用&lt;!-- more --&gt;标签的页面列表  </span><br><span class="line">  hideWholePostExcerpts: true # 是否隐藏全文摘录（当文章较短时，可能不需要摘录）</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="hexo主题目录下的_configyml配置"><a class="markdownIt-Anchor" href="#hexo主题目录下的_configyml配置"></a> Hexo主题目录下的_config.yml配置</h3>
 <p>该主题目录下的yml配置文件主题作者已经写得非常详细了，详细配置建议参考园原配置文件。下面列举我所更改的配置，供诸君参考。在该yml文件中，文件的目录全为相对路径，并且默认父目录为（可以更改）为项目根目录下的themes/next/source/。</p>
 <ul>
+<li>
+<p>开启主页顶部菜单栏</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  # 这里我只开启了四个标签栏，可根据所需自行调整</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br></pre></td></tr></table></figure>
+<p>在hexo根目录下的source中分别添加categories与tags目录，然后在两个目录下分别建一个index.md文件，具体格式如下(注意顶部和底部的- - -)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2025-01-23 09:04:13</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2025-01-23 09:04:13</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
 <li>
 <p>网站的浏览器小标签</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 本站并没有对此作任何修改，如果你需要修改浏览器标签，只需将不同大小的图片放在themes/next/source/images里即可</span><br><span class="line">favicon:  </span><br><span class="line">  small: /images/favicon-16x16-next.png  </span><br><span class="line">  medium: /images/favicon-32x32-next.png  </span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-next.png  </span><br><span class="line">  safari_pinned_tab: /images/logo.svg  </span><br><span class="line">  android_manifest: /images/manifest.json  </span><br><span class="line">  ms_browserconfig: /images/browserconfig.xml</span><br></pre></td></tr></table></figure>
@@ -315,7 +322,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 这里使用katex，需要安装hexo-renderer-markdown-it-plus以支持katex</span><br><span class="line">math:</span><br><span class="line">  per_page: true</span><br><span class="line">  mathjax:  </span><br><span class="line">    enable: false  </span><br><span class="line">    mhchem: false</span><br><span class="line">  katex:  </span><br><span class="line">    enable: true  </span><br><span class="line">    copy_tex: false</span><br><span class="line"></span><br><span class="line"># 卸载默认的hexo-renderer-marked</span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line"># 安装hexo-renderer-markdown-it-plus</span><br><span class="line">npm install hexo-renderer-markdown-it-plus --save</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>开启站点卜算子统计</p>
+<p>开启站点卜算子统计(经常失效)</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">busuanzi_count:  </span><br><span class="line">  enable: true  </span><br></pre></td></tr></table></figure>
 </li>
 <li>
@@ -323,17 +330,23 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pace:  </span><br><span class="line">  enable: true  </span><br><span class="line">  theme: flat-top  # 更多加载特效参考原配置文件</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>开启鼠标点击特效</p>
+<p>开启鼠标点击特效(该设置可代替<a href="#%E4%B8%BAnext%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E8%83%8C%E6%99%AF">背景</a>图片)</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 鼠标点击特效库  </span><br><span class="line">three:  </span><br><span class="line">  enable: true  </span><br><span class="line">  three_waves: true  </span><br><span class="line">  canvas_lines: true  </span><br><span class="line">  canvas_sphere: true</span><br><span class="line"></span><br><span class="line"># 鼠标点击特效，这里使用canvas_ribbon,随机加载  </span><br><span class="line">canvas_ribbon:  </span><br><span class="line">  enable: true  </span><br><span class="line">  size: 300  </span><br><span class="line">  alpha: 0.6 </span><br><span class="line">  zIndex: -1</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h2>
+<h3 id="为next主题更换背景"><a class="markdownIt-Anchor" href="#为next主题更换背景"></a> 为Next主题更换背景</h3>
+<p><strong>注</strong>：之前是使用的克隆源码方式安装的next主题，但这一步始终无法实现。因此强烈推荐使用npm install的方式。如果使用了前一种方法，最好从头开始部署项目。<br />
+在项目根目录source/_data/styles.styl里自定义样式文件（该文件需自行创建），具体内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 设置全局背景图片</span><br><span class="line">body &#123;</span><br><span class="line">  // 自定义背景图片需放在next主题项目下</span><br><span class="line">  background: url(/images/background.png) no-repeat center center fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.post-block &#123;</span><br><span class="line">  // 为文章添加阴影效果</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">  margin-bottom: 60px;</span><br><span class="line">  padding: 25px;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);</span><br><span class="line">  // 过渡动画</span><br><span class="line">  transition: box-shadow 0.3s ease-in-out;</span><br><span class="line">  // 博客内容透明化</span><br><span class="line">  background: rgba(255,255,255,0.95) none repeat scroll !important;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 鼠标悬停时加深阴影</span><br><span class="line">.post-block:hover &#123;</span><br><span class="line">  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在项目根目录_config.yml里开启自定义样式文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  style: source/_data/styles.styl</span><br></pre></td></tr></table></figure>
 <h3 id="hexo项目文章的使用"><a class="markdownIt-Anchor" href="#hexo项目文章的使用"></a> Hexo项目文章的使用</h3>
 <p>新建文章</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new &quot;你的文章标题&quot;</span><br></pre></td></tr></table></figure>
 <p>创建完成后可在根目录下source/_post/里找到“<a target="_blank" rel="noopener" href="http://xn--6qqx35c4xb36xq9ej35c.md">你的文章标题.md</a>”文件，查看一下md文件顶部固定版式：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---  </span><br><span class="line">title:  文章标题,决定了在页面上显示的文章的标题，和文件的名称不一样</span><br><span class="line">date: 2025-01-03 15:53:16   默认为文件创建的日期，文章默认会以此在页面排序</span><br><span class="line">categories:  默认没有，需要自己添加，格式如左边所示。添加后可以在分类页面查看详情</span><br><span class="line"> - Music </span><br><span class="line"> - 日语 </span><br><span class="line">tag:  格式如左边所示,添加后可以在标签页面查看详情</span><br><span class="line">  - 国语  </span><br><span class="line">  - 日语</span><br><span class="line">top: 指定置顶文章顺序，但未生效</span><br><span class="line">description: 可以指定文章简介，开启时在主页面会以此简介代替文章内容，使用此项时需要先卸载上面提到的hexo-excerpt插件并删除相关配置</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p><strong>注</strong>:上述部分是包含在两个<code>---</code>中间的，被<code>---</code>包含的部分规定了文章各项重要标签，这些内容在部署时会被hexo识别，并按照模板生成对应静态资源。</p>
+<p><strong>注</strong>:上述部分是包含在两个&quot;---&quot;中间的，被&quot;---&quot;包含的部分规定了文章各项重要标签，这些内容在部署时会被hexo识别，并按照模板生成对应静态资源。</p>
 <h2 id="将项目代码提交到github"><a class="markdownIt-Anchor" href="#将项目代码提交到github"></a> 将项目代码提交到Github</h2>
 <h3 id="事前准备"><a class="markdownIt-Anchor" href="#事前准备"></a> 事前准备</h3>
 <ul>
@@ -388,7 +401,9 @@
 <li>点击Deploy以保存项目</li>
 </ul>
 <h3 id="netlify的使用"><a class="markdownIt-Anchor" href="#netlify的使用"></a> Netlify的使用</h3>
-<p>创建完项目后Netlify便会立即开始部署，在“Sites”选项卡中会展示所有的项目。选择一个项目点击便会进入到对应的项目中，在“Sites/your-project-name”项目页面，你可看见项目的部署记录，当项目部署显示Published则表示部署成功。每次使用<code>hexo d</code>提交代码后，Netlify都会自动重新部署项目。</p>
+<p>创建完项目后Netlify便会立即开始部署，在“Sites”选项卡中会展示所有的项目。选择一个项目点击便会进入到对应的项目中，在“Sites/your-project-name”项目页面，你可看见项目的部署记录，当项目部署显示Published则表示部署成功。每次使用&quot;hexo d&quot;提交代码后，Netlify都会自动重新部署项目。</p>
+<hr />
+<img width="20%" height="auto" src="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
 
     </div>
 
