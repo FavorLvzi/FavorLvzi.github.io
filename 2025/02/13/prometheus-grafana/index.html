@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/监控系统" style=color:#6484be>
+                <a href="/tags/监控系统" style=color:#607d8b>
                     监控系统
                 </a>
             </span>
@@ -242,7 +242,7 @@
 <h2 id="将node_exporter添加到prometheus"><a class="markdownIt-Anchor" href="#将node_exporter添加到prometheus"></a> 将node_exporter添加到Prometheus</h2>
 <p>注：<em>这里默认(<s>因为太懒了</s>)安装了node_exporter，具体流程参考<a target="_blank" rel="noopener" href="https://cn.linux-console.net/?p=30799">此处</a></em></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scrape_configs:</span><br><span class="line">  # The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span><br><span class="line">  - job_name: &quot;prometheus&quot;</span><br><span class="line">    # metrics_path defaults to &#x27;/metrics&#x27;</span><br><span class="line">    # scheme defaults to &#x27;http&#x27;.</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&quot;localhost:9090&quot;]</span><br><span class="line">  # 例子  </span><br><span class="line">  - job_name: &quot;huosan_host_node_exporter&quot;</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&quot;192.168.11.***:****&quot;,&quot;192.168.11.***:****&quot;,&quot;192.168.11.***:****&quot;,&quot;192.168.11.***:****&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="将grafana作为数据源添加到prometheus"><a class="markdownIt-Anchor" href="#将grafana作为数据源添加到prometheus"></a> 将Grafana作为数据源添加到Prometheus</h2>
+<h2 id="将prometheus作为数据源添加到grafana"><a class="markdownIt-Anchor" href="#将prometheus作为数据源添加到grafana"></a> 将Prometheus作为数据源添加到Grafana</h2>
 <p>略(<s>因为太懒了</s>)，具体流程参考<a target="_blank" rel="noopener" href="https://cn.linux-console.net/?p=30799">此处</a></p>
 <p>参考来源：<br />
 <a target="_blank" rel="noopener" href="https://cn.linux-console.net/?p=21237">在Ubuntu 22.04|20.04|18.04上安装Prometheus服务器|</a><br />
