@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msvalidate.01" content="6670B6156A415FD527220E2C4F3C7D28">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flat-top.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"favorlvzi.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="k8s集群学习笔记">
+<meta property="og:url" content="https://favorlvzi.github.io/2025/05/20/kubernetes-learning/index.html">
+<meta property="og:site_name" content="清莠の博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kubernetes.io/images/docs/components-of-kubernetes.svg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-afb478ccb58391960c4fa0f79baba243_r.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-03e943a51fd0548113f7a4e07b423d98_1440w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-a1719b3cc6236f7485ef0c5ba81a5e8b_1440w.jpg">
+<meta property="og:image" content="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+<meta property="article:published_time" content="2025-05-20T06:50:01.000Z">
+<meta property="article:modified_time" content="2025-08-17T15:34:10.883Z">
+<meta property="article:author" content="清莠">
+<meta property="article:tag" content="日常工作心得">
+<meta property="article:tag" content="k8s">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kubernetes.io/images/docs/components-of-kubernetes.svg">
+
+
+<link rel="canonical" href="https://favorlvzi.github.io/2025/05/20/kubernetes-learning/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://favorlvzi.github.io/2025/05/20/kubernetes-learning/","path":"2025/05/20/kubernetes-learning/","title":"k8s集群学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>k8s集群学习笔记 | 清莠の博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">清莠の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">I'm here,with you...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s%E5%8F%91%E5%B1%95%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text"> k8s发展与背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s%E6%9E%B6%E6%9E%84%E6%80%BB%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text"> k8s架构总述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text"> k8s网络通信方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s%E8%B5%84%E6%BA%90%E6%B8%85%E5%8D%95"><span class="nav-number">4.</span> <span class="nav-text"> k8s资源清单</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="清莠"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">清莠</p>
+  <div class="site-description" itemprop="description">一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Zhdm9yTHZ6aS9GYXZvckx2emkuZ2l0aHViLmlv" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FavorLvzi&#x2F;FavorLvzi.github.io"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTkxMDRAZ21haWwuY29t" title="E-Mail → mailto:ymy9104@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTAyMTNAcXEuY29t" title="QQ → mailto:ymy0213@qq.com"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9mYXZvcmx2emktaGV4by1wYXJ0aWNsZS5uZXRsaWZ5LmFwcC8=" title="https:&#x2F;&#x2F;favorlvzi-hexo-particle.netlify.app&#x2F;">Particle主题博客</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9heHV0b25neHVlLm9ucmVuZGVyLmNvbQ==" title="https:&#x2F;&#x2F;axutongxue.onrender.com">阿虚の储物间</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9zdG9yZS5zdGVhbXBvd2VyZWQuY29t" title="https:&#x2F;&#x2F;store.steampowered.com">本物のSteam</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly92di54eTB2MC50b3A=" title="https:&#x2F;&#x2F;vv.xy0v0.top">VV表情包索引</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+      
+       
+      <div id="music163player">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=2029308796&auto=0&height=66"></iframe>
+      </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://favorlvzi.github.io/2025/05/20/kubernetes-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="清莠">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清莠の博客">
+      <meta itemprop="description" content="一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="k8s集群学习笔记 | 清莠の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          k8s集群学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-20 14:50:01" itemprop="dateCreated datePublished" datetime="2025-05-20T14:50:01+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-17 23:34:10" itemprop="dateModified" datetime="2025-08-17T23:34:10+08:00">2025-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">文章</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/Linux-%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">Linux 运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="k8s发展与背景"><a class="markdownIt-Anchor" href="#k8s发展与背景"></a> k8s发展与背景</h3>
+<p>kubernetes简称k8s，在希腊语中意为舵手，是一款开源的容器编排平台。在k8s诞生之前Google内部已经有一款非常成熟的管理工具Borg，依据Borg的设计理念Google公司推出了开源容器编排工具k8s。从项目部署的方式来看，其发展经历了三个阶段：</p>
+<ul>
+<li><strong>传统部署时代</strong>：早期的应用程序直接部署在物理服务器上运行，由于物理服务器无法为应用程序定义确切的资源边界，导致了资源分配不均的问题。如一个服务器占用了大量硬件资源，导致其他所有的应用程序只能共用余下的资源。有事后又存在某个应用程序只占用了一小块资源导致了资源的浪费，进而导致成本上升</li>
+<li><strong>虚拟化部署时代</strong>：为了解决传统部署方式的弊端，引入了虚拟化技术。虚拟化的核心思想是将一台物理服务器划分为多台虚拟机，每台虚拟机都具备完整的计算机功能。虚拟化技术可以更好的利用硬件资源，解决了传统部署方式的诸多弊端</li>
+<li><strong>容器部署时代</strong>：容器类似于虚拟机，但相较于庞大的虚拟机容器显得更加小巧，可以很轻易的在不同平台间迁移</li>
+</ul>
+<p>微服务、容器化技术的发展解决了资源利用率不高的问题。但随着容器的不断增多，如何管理这些容器成了一大难题，为了解决这些问题，k8s应运而生。其特点为:</p>
+<blockquote>
+<p>轻量：所需的资源少<br />
+弹性伸缩/负载均衡/高可用：可以依据程序的负载情况自动增加或减少副本数量<br />
+可移植性高：可以在各种裸机或者云服务器运行</p>
+</blockquote>
+<h3 id="k8s架构总述"><a class="markdownIt-Anchor" href="#k8s架构总述"></a> k8s架构总述</h3>
+<p><img src="https://kubernetes.io/images/docs/components-of-kubernetes.svg" alt="k8s架构图" title="k8s架构图" /><br />
+k8s采用主从架构设计，一个k8s集群通常由最少一个的Maste控制节点与最少两个的Node工作节点组成。其中控制节点为集群的控制平面，负责整个集群的决策与管理；工作节点负责为容器提供环境，是资源真正运行的地方</p>
+<ol>
+<li><strong>Master</strong></li>
+</ol>
+<ul>
+<li>Scheduler：调度器，负责集群资源的调度，根据给定的规则将Pod调度到合适的Node上</li>
+<li>API server：所有服务访问的统一入口，接受用户输入的命令，提供认证、授权等</li>
+<li>Controller manager：控制管理器，负责实际运行集群以及集群状态的管理</li>
+<li>etcd：存储集群数据的分布式键值存储数据库，1.11前的老版基于内存，新版基于数据库</li>
+</ul>
+<ol start="2">
+<li><strong>Node</strong></li>
+</ol>
+<ul>
+<li>kubelet：负责Pod生命周期的维护</li>
+<li>kube-proxy：k8s网络代理，负责处理集群内部与外部的网络通信</li>
+<li>容器运行时环境：如Docker、Containerd、CRI-O，负责镜像管理和容器的实际运行</li>
+</ul>
+<ol start="3">
+<li><strong>附加组件</strong></li>
+</ol>
+<ul>
+<li>Dashboard：图形化管理页面</li>
+<li>Ingress Controller：提供外部访问入口</li>
+<li>日志系统：如Fluentd + Elasticsearch + Kibana（EFK）实现日志采集、存储与查询</li>
+</ul>
+<h3 id="k8s网络通信方式"><a class="markdownIt-Anchor" href="#k8s网络通信方式"></a> k8s网络通信方式</h3>
+<p>kubernetes网络模型特点</p>
+<ul>
+<li>集群里的每个 Pod 都会有唯一的 IP 地址</li>
+<li>Pod 里的所有容器共享这个 IP 地址</li>
+<li>集群里的所有 Pod 都属于同一个网段</li>
+<li>Pod 直接可以基于 IP 地址直接访问另一个 Pod，不需要做网络地址转换（NAT）</li>
+<li>Pod里面的容器共享network namespace(IP和MAC地址), 所以这些容器交互可以使用本地回环地址</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">同一Pod上容器间的通信(合租公寓)</th>
+<th style="text-align:left">图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">同一个Pod间的容器共享网络命名空间，可以直接通过localhost进行通信。即新创建的Docker容器不会创建自己的网卡或者配置自己的 IP，而是和一个指定的容器共享 IP、端口范围等。k8s中每个Pod都有一个pause容器，它拥有独立的网络命名空间，在Pod启动Docker容器时使用&quot;–net=conatiner&quot;就可以让当前Docker容器加入到Pod容器拥有的网络命名空间即pause容器。</td>
+<td style="text-align:left"><image src="https://pic2.zhimg.com/v2-0bd4f225b2fa60a0ca6d9892c4f73099_1440w.jpg"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">同一Node内Pod间的通信(小区内径)</th>
+<th style="text-align:left">图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">每个Pod都有唯一的IP地址，可以直接通过访问IP进行通信。如图，Pod1和Pod2都是通过veth对连接到同一个Docker0网桥上的，并且和网桥的IP3在同一网段上，因此两者可以直接通过网桥进行通信。</td>
+<td style="text-align:left"><img src="https://pic4.zhimg.com/v2-afb478ccb58391960c4fa0f79baba243_r.jpg"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">不同Node间Pod的通信(跨城高速)</th>
+<th style="text-align:left">图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">同一Node下的Pod都在同一Docker0网桥上，因此可以直接通信。如果不同Node间需要通信则必须通过宿主机的物理网卡。为了实现Node间的通信，需要将Node和Pod所在的IP关联起来，并且保证没有任何冲突。如图，Pod1要访问Pod2，首先需要把数据发给Node1的eth0，然后找到Node2的eth0，接着才是传到Pod2的eth0.</td>
+<td style="text-align:left"><img  src="https://pic3.zhimg.com/v2-03e943a51fd0548113f7a4e07b423d98_1440w.jpg"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pod与Service间的通信</th>
+<th style="text-align:left">图示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">在创建Service时k8s会为服务分配一个虚拟ip。通过此IP访问服务时，会由iptables负责转发，而iptables规则由kube-proxy组件维护。kube-proxy运行时会不断查询监听APIServer中Server和Endpoints的变化，以此来更新iptables的规则。</td>
+<td style="text-align:left"><img  src="https://pic4.zhimg.com/v2-a1719b3cc6236f7485ef0c5ba81a5e8b_1440w.jpg"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">外部与Service间的通信</th>
+<th style="text-align:left">方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">集群外部无法直接通过Pod或Service ip访问集群内部，如果想要实现访问。则需要通过一些手段将内部ip暴露或者通过中间件将请求转接到集群内部</td>
+<td style="text-align:left">1. NodePort(临时收费站)：在k8s集群中的每个Node上打开一个主机的真实端口，如此便能通过此端口访问内部Service<br>2. LoadBalancer(云厂商专线):对Service的访问请求会通过LoadBalancer转发到后端Pod上<br>3. Ingress(智能路由):将集群内部服务暴露出来，以便直接从外部访问，Ingress则负责管理流量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="k8s资源清单"><a class="markdownIt-Anchor" href="#k8s资源清单"></a> k8s资源清单</h3>
+<p><strong>必要属性</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">version</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">k8s api的版本，目前基本上是v1，可用kubectl api-versions查询</td>
+</tr>
+<tr>
+<td style="text-align:left">kind</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">yaml文件定义的资源类型或角色，如pod、deployment</td>
+</tr>
+<tr>
+<td style="text-align:left">metadata</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">元数据对象</td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="exturl" data-url="aHR0cDovL21ldGFkYXRhLm5hbWU=">metadata.name<i class="fa fa-external-link-alt"></i></span></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">元数据对象名字，自己定义，比如pod的名字</td>
+</tr>
+<tr>
+<td style="text-align:left">metadata.namespace</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">元数据对象的命名空间，自己定义</td>
+</tr>
+<tr>
+<td style="text-align:left">spec</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">详细定义对象</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].name</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">定义容器的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].image</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">定义时使用到的镜像名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>spec.containers[] 其他属性</strong>(在yaml中注意缩进格式，不要使用Tab间代替空格)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">spec.containers[].imagePullPolicy</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">镜像拉取策略(<strong>默认Always</strong>)<br>Always:每次都尝试重新拉取<br>Never:仅经使用本地镜像<br>IfNotPresent:优先使用本地镜像，没有就拉取在线镜像</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].command[]</td>
+<td style="text-align:left">List</td>
+<td style="text-align:left">容器启动时的命令，不指定则使用容器打包时的启动命令</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].args[]</td>
+<td style="text-align:left">List</td>
+<td style="text-align:left">容器启动命令参数</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].workingDir</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">容器工作目录</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].volumeMounts[]</td>
+<td style="text-align:left">List</td>
+<td style="text-align:left">容器内部存储卷配置</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].volumeMounts[].name</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">可以被容器挂载的存储卷的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].volumeMounts[].mountPath</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">可以被容器挂载的存储卷的路径</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].volumeMounts[].readOnly</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">存储卷路径的读取模式，true或false，默认为可读写模式</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].ports[]</td>
+<td style="text-align:left">list</td>
+<td style="text-align:left">容器需要用到的端口</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].ports[].name</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">设置端口名称</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].ports[].containerPort</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">指定容器需要监听的端口号</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].ports[].hostPort</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">指定容器所在主机需要监听的端口号，默认和containerPort一致(若设置此参数，则同一主机无法启动该容器的相同副本)</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].ports[].protocol</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">选择TCP或UDP作为端口协议，默认TCP</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].env[]</td>
+<td style="text-align:left">List</td>
+<td style="text-align:left">容器运行前所需的环境变量</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].env[].name</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">环境变量名称</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].env[].value</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">环境变量的值</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">指定资源限制和资源请求值</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.limits</td>
+<td style="text-align:left">Obejct</td>
+<td style="text-align:left">设置容器运行时资源的上限</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.limits.cpu</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">设置cpu资源的限制，单位为core数</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.limits.momery</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">设置内存限制，单位为MiB、GiB</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.requests</td>
+<td style="text-align:left">Obejct</td>
+<td style="text-align:left">设置容器启动和调度时的限制</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.requests.cpu</td>
+<td style="text-align:left">Obejct</td>
+<td style="text-align:left">容器启动初始化可用cpu请求量，单位为core数</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.containers[].resources.requests.memory</td>
+<td style="text-align:left">Obejct</td>
+<td style="text-align:left">容器启动初始化可用内存请求量，单位为MiB、GiB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>额外的属性</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">spec.restartPolicy</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">定义pod的重启策略(<strong>默认Always</strong>)<br>Always:pod一旦重启，无论何种原因导致中止kubelet都将重启它<br>OnFailure:只有pod以非0退出代码中止时，kubelet才会重启该pod<br>Never：pod中止后，kubelet将其报告给Master，但不会重启该pod</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.nodeSelector</td>
+<td style="text-align:left">Obejct</td>
+<td style="text-align:left">node的Label过滤标签，以键值对形式指定</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.imagePullSecrets</td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">拉取镜像时使用的Secrets名称，以键值对形式指定</td>
+</tr>
+<tr>
+<td style="text-align:left">spec.hostNetwork</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">定义是否使用主机网络模式，默认为false，设置true则表示不使用docker网桥模式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>参考地址：<br />
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYwNTExODA5L2FydGljbGUvZGV0YWlscy8xMzYzMjUwMjA=">【Kubernetes】在 kubernetes 集群中 pod和pod之间的访问流程-CSDN博客<i class="fa fa-external-link-alt"></i></span><br />
+<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81NTAxMDIyODM=">容器云平台网络架构设计 | 架构进阶 - 知乎<i class="fa fa-external-link-alt"></i></span><br />
+<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80MDAzNDIxODA=">深入浅出学K8s - 详解K8s的网络模型 - 知乎<i class="fa fa-external-link-alt"></i></span><br />
+<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82Mzc2NzIzMzg=">Network：了解K8S的网络通信模型 - 知乎<i class="fa fa-external-link-alt"></i></span><br />
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMXc0NDExeTdHbz9zcG1faWRfZnJvbT0zMzMuNzg4LnZpZGVvcG9kLmVwaXNvZGVzJnZkX3NvdXJjZT0xZTI4ZThjMDFiMmI3OTVjYzM1MTBhYjQ3NDNiNzIyNQ==">尚硅谷Kubernetes教程(K8s入门到精通)_哔哩哔哩_bilibili<i class="fa fa-external-link-alt"></i></span></p>
+<hr />
+<img width="180" height="auto"  src="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/" rel="tag"># 日常工作心得</a>
+              <a href="/tags/k8s/" rel="tag"># k8s</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/04/20/homer-heplify/" rel="prev" title="Linux环境下使用Heplify抓取SIP信令并展示">
+                  <i class="fa fa-angle-left"></i> Linux环境下使用Heplify抓取SIP信令并展示
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">清莠</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+<script src="/live2dw/lab/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lab/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","hOffset":30},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>

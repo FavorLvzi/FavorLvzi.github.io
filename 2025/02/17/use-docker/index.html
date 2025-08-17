@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msvalidate.01" content="6670B6156A415FD527220E2C4F3C7D28">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flat-top.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"favorlvzi.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 22.04 Docker的安装与简单使用">
+<meta property="og:url" content="https://favorlvzi.github.io/2025/02/17/use-docker/index.html">
+<meta property="og:site_name" content="清莠の博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+<meta property="article:published_time" content="2025-02-17T07:12:40.000Z">
+<meta property="article:modified_time" content="2025-04-10T09:17:13.000Z">
+<meta property="article:author" content="清莠">
+<meta property="article:tag" content="日常工作心得">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="容器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+
+
+<link rel="canonical" href="https://favorlvzi.github.io/2025/02/17/use-docker/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://favorlvzi.github.io/2025/02/17/use-docker/","path":"2025/02/17/use-docker/","title":"Ubuntu 22.04 Docker的安装与简单使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu 22.04 Docker的安装与简单使用 | 清莠の博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">清莠の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">I'm here,with you...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu-2204%E5%AE%89%E8%A3%85docker%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text"> Ubuntu 22.04安装Docker详细步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text"> Docker的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%9C%AC%E7%AB%99%E7%9A%84hexo%E9%A1%B9%E7%9B%AE%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%88%B0docker"><span class="nav-number">4.</span> <span class="nav-text"> 将本站的Hexo项目本地部署到Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80-2"><span class="nav-number">4.1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-dockerfile%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0docker%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.2.</span> <span class="nav-text"> 使用 Dockerfile将项目部署到Docker详细步骤</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="清莠"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">清莠</p>
+  <div class="site-description" itemprop="description">一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Zhdm9yTHZ6aS9GYXZvckx2emkuZ2l0aHViLmlv" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FavorLvzi&#x2F;FavorLvzi.github.io"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTkxMDRAZ21haWwuY29t" title="E-Mail → mailto:ymy9104@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTAyMTNAcXEuY29t" title="QQ → mailto:ymy0213@qq.com"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9mYXZvcmx2emktaGV4by1wYXJ0aWNsZS5uZXRsaWZ5LmFwcC8=" title="https:&#x2F;&#x2F;favorlvzi-hexo-particle.netlify.app&#x2F;">Particle主题博客</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9heHV0b25neHVlLm9ucmVuZGVyLmNvbQ==" title="https:&#x2F;&#x2F;axutongxue.onrender.com">阿虚の储物间</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9zdG9yZS5zdGVhbXBvd2VyZWQuY29t" title="https:&#x2F;&#x2F;store.steampowered.com">本物のSteam</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly92di54eTB2MC50b3A=" title="https:&#x2F;&#x2F;vv.xy0v0.top">VV表情包索引</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+      
+       
+      <div id="music163player">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=2029308796&auto=0&height=66"></iframe>
+      </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://favorlvzi.github.io/2025/02/17/use-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="清莠">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清莠の博客">
+      <meta itemprop="description" content="一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ubuntu 22.04 Docker的安装与简单使用 | 清莠の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu 22.04 Docker的安装与简单使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-17 15:12:40" itemprop="dateCreated datePublished" datetime="2025-02-17T15:12:40+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 17:17:13" itemprop="dateModified" datetime="2025-04-10T17:17:13+08:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">文章</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/Linux-%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">Linux 运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<ul>
+<li>
+<p><strong>Docker简介</strong><br />
+<strong><span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbQ==" title="官网">Docker<i class="fa fa-external-link-alt"></i></span></strong><image src="https://static-00.iconduck.com/assets.00/docker-icon-256x256-9gjup0oz.png" width="5%" style="display: inline;vertical-align: middle;margin-bottom: -20px:">是一个用于开发、部署和运行应用程序的开放平台，它利用容器化技术，将应用程序及其依赖项打包成一个独立的容器，从而实现应用在不同环境中的一致运行。<br />
+通过运用容器技术，极大地减小了项目配置地复杂性。在传统的虚拟机部署方式中，由于开发或测试环境的不同，导致项目在迁移时出现诸多兼容性问题（如果系统版本、软件环境依赖的不同）。同时，容器具有轻量级的特性，即容器内只含有满足运行时所需的最基本的配置。</p>
+</li>
+<li>
+<p><strong>核心概念</strong><br />
+<strong>镜像（Image）</strong>：是一个只读的模板，类似于虚拟机的镜像。它包含了运行应用程序所需的一切，如代码、运行时环境、库、环境变量和配置文件等。可以将镜像看作是容器的 “蓝图”，通过镜像可以创建出多个相同的容器。例如，一个基于 Ubuntu 系统并安装了 Python 环境的镜像，就可以用来创建运行 Python 应用的容器。（这里介绍一个国内可用的Docker镜像站<span class="exturl" data-url="aHR0cHM6Ly9kb2NrZXIuYWl0eXAuY29tLw==">渡渡鸟镜像同步站<i class="fa fa-external-link-alt"></i></span>）<br />
+<strong>容器（Container）</strong>：是镜像的一个运行实例，它是一个独立的进程，与宿主机以及其他容器隔离。容器之间可以通过网络进行通信，并且可以根据需要启动、停止、删除。容器的启动速度非常快，通常在毫秒级别，因为它不需要像虚拟机那样启动一个完整的操作系统。例如，基于上述 Python 镜像创建的容器可以运行具体的 Python 脚本或 Web 应用。<br />
+<strong>仓库（Repository）</strong>：用于存储和分发 Docker 镜像的地方，类似于代码仓库。有公共仓库（如 Docker Hub）和私有仓库之分。公共仓库中包含了大量的官方和社区维护的镜像，用户可以免费下载使用；私有仓库则用于企业或组织内部存储和管理自己的镜像，保证镜像的安全性和隐私性。<br />
+简言之：镜像制定模板，容器依据镜像创建实例，仓库则负责管理镜像。</p>
+</li>
+</ul>
+<h2 id="ubuntu-2204安装docker详细步骤"><a class="markdownIt-Anchor" href="#ubuntu-2204安装docker详细步骤"></a> Ubuntu 22.04安装Docker详细步骤</h2>
+<ul>
+<li>卸载系统默认安装的Docker<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo  apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+</li>
+<li>安装必要的包<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo  apt  install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release</span><br></pre></td></tr></table></figure>
+</li>
+<li>添加GPG key与apt源（以阿里云为例）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl  -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg |  sudo gpg --dearmor  -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 这里添加后一定要进行apt更新</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
+</li>
+<li>安装Docker<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo  apt  install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+</li>
+<li>检查是否安装成功<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:~# docker version</span><br><span class="line">Client: Docker Engine - Community</span><br><span class="line">Version:           27.5.1</span><br><span class="line">API version:       1.47</span><br><span class="line">Go version:        go1.22.11</span><br><span class="line">Git commit:        9f9e405</span><br><span class="line">Built:             Wed Jan 22 13:41:31 2025</span><br><span class="line">OS/Arch:           linux/amd64</span><br><span class="line">Context:           default</span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="docker的基本使用"><a class="markdownIt-Anchor" href="#docker的基本使用"></a> Docker的基本使用</h2>
+<ul>
+<li>从仓库中pull拉取镜像<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 以拉取Ubuntu镜像为例，由于Docker源仓库访问不稳定，这里直接使用上面提到的镜像站</span><br><span class="line">docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04</span><br></pre></td></tr></table></figure>
+</li>
+<li>查看已有镜像<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:~# docker images</span><br><span class="line">REPOSITORY                                                  TAG       IMAGE ID       CREATED       SIZE</span><br><span class="line">swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu   22.04     9d28ccdc1fc7   3 years ago   76.3MB</span><br></pre></td></tr></table></figure>
+</li>
+<li>运行（启动）一个容器<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -i 交互式操作；-t 指定终端，这里指定为shell；-d 后台运行；--name 为该容器指定一个易记的别名</span><br><span class="line">root@ubuntu2204:~# docker run -itd --name ubuntu2204  9d28ccdc1fc7 /bin/bash</span><br><span class="line">42ae9eef3a5bf30f4830a512f32d1632d286495377aaace904c844929103b012</span><br></pre></td></tr></table></figure>
+</li>
+<li>查看已创建的容器<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:~# docker ps -a</span><br><span class="line">CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES</span><br><span class="line">42ae9eef3a5b   9d28ccdc1fc7   &quot;/bin/bash&quot;   4 minutes ago   Up 4 minutes             ubuntu2204</span><br></pre></td></tr></table></figure>
+</li>
+<li>进入容器<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 指定容器时可使用容器CONTAINER ID也可使用别名NAMES</span><br><span class="line">docker exect -it ubuntu2204 /bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="将本站的hexo项目本地部署到docker"><a class="markdownIt-Anchor" href="#将本站的hexo项目本地部署到docker"></a> 将本站的Hexo项目本地部署到Docker</h2>
+<h3 id="前言-2"><a class="markdownIt-Anchor" href="#前言-2"></a> 前言</h3>
+<p>本博客项目是部署在Netlify上的，既然提到了Docker，不妨使用Docker的方法来部署该项目，同时也感受一下Docker部署方式的快捷与强大（<s>虽然Hexo已内置了hexo s命令</s>）。</p>
+<h3 id="使用-dockerfile将项目部署到docker详细步骤"><a class="markdownIt-Anchor" href="#使用-dockerfile将项目部署到docker详细步骤"></a> 使用 Dockerfile将项目部署到Docker详细步骤</h3>
+<ul>
+<li>在Hexo项目根目录下创建Dockerfile文件，详细配置如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用 渡渡鸟镜像站镜像作为基础镜像 </span><br><span class="line">FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/node:18-alpine</span><br><span class="line"># 设置工作目录 </span><br><span class="line">WORKDIR /var/www/dockerfile </span><br><span class="line"># 将 package.json 和 package-lock.json 复制到工作目录 </span><br><span class="line">COPY package*.json /var/www/dockerfile </span><br><span class="line"># 安装项目依赖</span><br><span class="line">RUN npm install</span><br><span class="line"># 将整个项目复制到工作目录</span><br><span class="line">COPY . /var/www/dockerfile </span><br><span class="line"># 生成静态文件 </span><br><span class="line">RUN hexo generate </span><br><span class="line"># 暴露 Hexo 默认端口 </span><br><span class="line">EXPOSE 4000 </span><br><span class="line"># 启动 Hexo 服务器 </span><br><span class="line">CMD [&quot;hexo&quot;, &quot;server&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+<li>使用build命令将Hexo项目构建为Docker镜像<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -t用户指定镜像别名 ”.“指定需要构建的项目目录，这里我是在hexo项目根目录下</span><br><span class="line">docker build -t hexo-next .</span><br></pre></td></tr></table></figure>
+</li>
+<li>运行Docker容器<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hexo项目默认端口为4000，也可指定其他端口</span><br><span class="line">docker run -d -p 4000:4000 hexo-next</span><br></pre></td></tr></table></figure>
+</li>
+<li>最后，通过localhost:4000即可访问本地博客页面</li>
+</ul>
+<hr />
+<p>参考链接：<br />
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEyNzg3MjIvYXJ0aWNsZS9kZXRhaWxzLzEzNzY3MzM1Mw==">Ubuntu 22.04下Docker安装（最全指引）_ubuntu22.04 docker 分区-CSDN博客<i class="fa fa-external-link-alt"></i></span></p>
+<hr />
+<img width="180" height="auto"  src="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/" rel="tag"># 日常工作心得</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"># 容器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/13/prometheus-grafana/" rel="prev" title="Prometheus、Grafana集成安装">
+                  <i class="fa fa-angle-left"></i> Prometheus、Grafana集成安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/18/build-website/" rel="next" title="Ubuntu 22.04搭建Hexo Next主题博客过程详解">
+                  Ubuntu 22.04搭建Hexo Next主题博客过程详解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">清莠</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+<script src="/live2dw/lab/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lab/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","hOffset":30},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>

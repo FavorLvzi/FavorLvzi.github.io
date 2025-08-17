@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msvalidate.01" content="6670B6156A415FD527220E2C4F3C7D28">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flat-top.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"favorlvzi.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 22.04搭建Hexo Next主题博客过程详解">
+<meta property="og:url" content="https://favorlvzi.github.io/2025/02/18/build-website/index.html">
+<meta property="og:site_name" content="清莠の博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-1c3baeecf1ef3bec5c8ef3f14639f68b_r.jpg">
+<meta property="og:image" content="https://theme-next.js.org/images/next-default-scheme.png">
+<meta property="og:image" content="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+<meta property="article:published_time" content="2025-02-18T05:40:40.000Z">
+<meta property="article:modified_time" content="2025-04-24T01:51:06.000Z">
+<meta property="article:author" content="清莠">
+<meta property="article:tag" content="日常工作心得">
+<meta property="article:tag" content="Hexo Next">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-1c3baeecf1ef3bec5c8ef3f14639f68b_r.jpg">
+
+
+<link rel="canonical" href="https://favorlvzi.github.io/2025/02/18/build-website/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://favorlvzi.github.io/2025/02/18/build-website/","path":"2025/02/18/build-website/","title":"Ubuntu 22.04搭建Hexo Next主题博客过程详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu 22.04搭建Hexo Next主题博客过程详解 | 清莠の博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">清莠の博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">I'm here,with you...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text"> 详细搭建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text"> 准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nodejs"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 安装Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85npm"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 安装npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85git"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 安装Git</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BAhexo%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6"><span class="nav-number">2.2.</span> <span class="nav-text"> 搭建Hexo项目框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo%E8%84%9A%E6%89%8B%E6%9E%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text"> 安装Hexo脚手架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96hexo%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.2.2.</span> <span class="nav-text"> 初始化Hexo博客项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-next%E4%B8%BB%E9%A2%98%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text"> Hexo Next主题基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85next%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.1.</span> <span class="nav-text"> 安装Next主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E6%A0%B9%E7%9B%AE%E5%BD%95_configyml%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Hexo根目录_config.yml基础配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E4%B8%BB%E9%A2%98%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84_configyml%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Hexo主题目录下的_config.yml配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">2.4.</span> <span class="nav-text"> 杂项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BAnext%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E8%83%8C%E6%99%AF"><span class="nav-number">2.4.1.</span> <span class="nav-text"> 为Next主题更换背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E9%A1%B9%E7%9B%AE%E6%96%87%E7%AB%A0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Hexo项目文章的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0github"><span class="nav-number">2.5.</span> <span class="nav-text"> 将项目代码提交到Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">2.5.1.</span> <span class="nav-text"> 事前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ssh%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81"><span class="nav-number">2.5.2.</span> <span class="nav-text"> 使用SSH方式提交代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86hexo%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0netlify%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.6.</span> <span class="nav-text"> 将Hexo项目部署到Netlify平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%88%96%E7%99%BB%E5%BD%95netlify"><span class="nav-number">2.6.1.</span> <span class="nav-text"> 注册或登录Netlify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9C%80%E8%A6%81%E9%83%A8%E7%BD%B2%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.6.2.</span> <span class="nav-text"> 创建需要部署的项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netlify%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.6.3.</span> <span class="nav-text"> Netlify的使用</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="清莠"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">清莠</p>
+  <div class="site-description" itemprop="description">一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Zhdm9yTHZ6aS9GYXZvckx2emkuZ2l0aHViLmlv" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FavorLvzi&#x2F;FavorLvzi.github.io"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTkxMDRAZ21haWwuY29t" title="E-Mail → mailto:ymy9104@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlteTAyMTNAcXEuY29t" title="QQ → mailto:ymy0213@qq.com"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9mYXZvcmx2emktaGV4by1wYXJ0aWNsZS5uZXRsaWZ5LmFwcC8=" title="https:&#x2F;&#x2F;favorlvzi-hexo-particle.netlify.app&#x2F;">Particle主题博客</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9heHV0b25neHVlLm9ucmVuZGVyLmNvbQ==" title="https:&#x2F;&#x2F;axutongxue.onrender.com">阿虚の储物间</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9zdG9yZS5zdGVhbXBvd2VyZWQuY29t" title="https:&#x2F;&#x2F;store.steampowered.com">本物のSteam</span>
+            </li>
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly92di54eTB2MC50b3A=" title="https:&#x2F;&#x2F;vv.xy0v0.top">VV表情包索引</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+      
+       
+      <div id="music163player">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="https://music.163.com/outchain/player?type=2&id=2029308796&auto=0&height=66"></iframe>
+      </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://favorlvzi.github.io/2025/02/18/build-website/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="清莠">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="清莠の博客">
+      <meta itemprop="description" content="一直以来我们都是以自我为中心观察这个世界，只能看到我眼里的世界，看不到世界眼里的我，让我们第一次在别人身上看到自己，一是理想的自己，二是真实的自己">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ubuntu 22.04搭建Hexo Next主题博客过程详解 | 清莠の博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu 22.04搭建Hexo Next主题博客过程详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-18 13:40:40" itemprop="dateCreated datePublished" datetime="2025-02-18T13:40:40+08:00">2025-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-24 09:51:06" itemprop="dateModified" datetime="2025-04-24T09:51:06+08:00">2025-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">文章</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%AB%A0/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">网站搭建</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p>时常调侃自己的工作是给技术打杂的，就好比砖匠的小徒弟每天天给师傅和泥、递水。当然，也感谢上级能给我如此多的空余时间好让自己提升技术水平。前段时间偶然间在网上看见搭建个人博客的教程，加之本人也有考虑过作这方面的尝试。于是便开始左手准备了。虽然在搭建过程中遇到了不少问题，但幸好有AI可以答疑。<br />
+最开始时暂选的主题是Particlex（Particle），但诸多效果不尽人意，最后也就选择了功能更为强大的Next主题（参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">iissnan/hexo-theme-next: Elegant theme for Hexo.<i class="fa fa-external-link-alt"></i></span>）。<br />
+部署方面，最开始使用Github自带的Github page进行静态页面的部署，但考虑到访问效率的问题，最终选择了<a href="(https://www.netlify.com/)">Netlify</a>(虽然是国外的平台，但庆幸国内也能访问，并且速度还不错)。之所以选择Netlify,一是访问国内速度尚可，二是个人版免费，三是部署简便。<br />
+本文所讲的90%内容都可以在README.md以及Next主题官文<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">theme-next.js.org<i class="fa fa-external-link-alt"></i></span>中找到。我所作之事不过是拿来用罢了，就好比木匠师傅把椅子的腿腿打磨好了，徒弟只需将其斗好便可。</p>
+<h1 id="详细搭建过程"><a class="markdownIt-Anchor" href="#详细搭建过程"></a> 详细搭建过程</h1>
+<h2 id="准备工作"><a class="markdownIt-Anchor" href="#准备工作"></a> 准备工作</h2>
+<p><strong>总述</strong>：安装Hexo引擎所需基础环境Node.js，安装npm以管理Node.js包，安装Git以提交代码到Github(本项目将代码托管到<a href="(https://github.com/FavorLvzi/FavorLvzi.github.io)" title="Github项目仓库">Github</a>)，当然也可以选择Gitlab、GitCode等进行代码管理。</p>
+<h3 id="安装nodejs"><a class="markdownIt-Anchor" href="#安装nodejs"></a> 安装Node.js</h3>
+<p>在Ubuntu 22.04上通过apt最高只能安装到12版本的Node.js,所以这里推荐使用nvm安装更高版本的Node.js，具体步骤如下(非root用户请自行加&quot;sudo&quot;,进行安装前都建议先进行&quot;apt update&quot;)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用curl或者wget下载nvm install.sh文件,这里的URL下载地址可通过https://github.akams.cn/进行代理</span><br><span class="line">wget  https://github.7boe.top/https://raw.githubusercontent.com/creationix/nvm/master/install.sh </span><br><span class="line"></span><br><span class="line"># 执行install.sh脚本</span><br><span class="line">source install.sh</span><br><span class="line"></span><br><span class="line"># 刷新source，让nvm命令生效</span><br><span class="line">source ~/.nvm/nvm.sh</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line"># 验证一下nvm是否成功部署</span><br><span class="line">root@ubuntu2204:/var/www# nvm -v</span><br><span class="line">0.39.3</span><br><span class="line"></span><br><span class="line"># 使用nvm安装Node.js指定版本(若使用新版本的Hexo7，官方推荐最低安装Node18)</span><br><span class="line">nvm install 22.14.0</span><br></pre></td></tr></table></figure>
+<h3 id="安装npm"><a class="markdownIt-Anchor" href="#安装npm"></a> 安装npm</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install npm</span><br><span class="line"></span><br><span class="line"># 提前更换npm镜像源（这里以淘宝镜像源为例），后续安装插件会用到</span><br><span class="line">npm config set  registry &quot;https://registry.npmmirror.com/&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install git</span><br><span class="line"></span><br><span class="line"># 提前设置全局变量，后续git代码时需要使用ssh的方式</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="搭建hexo项目框架"><a class="markdownIt-Anchor" href="#搭建hexo项目框架"></a> 搭建Hexo项目框架</h2>
+<h3 id="安装hexo脚手架"><a class="markdownIt-Anchor" href="#安装hexo脚手架"></a> 安装Hexo脚手架</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h3 id="初始化hexo博客项目"><a class="markdownIt-Anchor" href="#初始化hexo博客项目"></a> 初始化Hexo博客项目</h3>
+<p>本文以 /var/www/hexo-next 为例,后续教程默认在此目录进行(统称项目根目录)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建并进入Hexo项目父目录</span><br><span class="line">mkdir /var/www</span><br><span class="line">cd /var/www</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 初始化博客项目根目录，初始化完成后根目录下会生成Hexo项目的基础文件</span><br><span class="line"># 这里指定hexo-next为项目名，执行完后hexo会在/var/www生成同名文件夹</span><br><span class="line">hexo init hexo-next</span><br><span class="line"></span><br><span class="line"># 进入项目根目录</span><br><span class="line">cd hexo-next</span><br></pre></td></tr></table></figure>
+<p>观察一下项目根目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:/var/www/hexo-next# ls -l</span><br><span class="line">total 128</span><br><span class="line">-rw-r--r--   1 root root     0 Feb 19 10:52 _config.landscape.yml</span><br><span class="line">-rw-r--r--   1 root root  2443 Feb 19 10:52 _config.yml</span><br><span class="line">drwxr-xr-x 214 root root 12288 Feb 19 10:52 node_modules</span><br><span class="line">-rw-r--r--   1 root root   615 Feb 19 10:52 package.json</span><br><span class="line">-rw-r--r--   1 root root 98036 Feb 19 10:52 package-lock.json</span><br><span class="line">drwxr-xr-x   2 root root  4096 Feb 19 10:52 scaffolds</span><br><span class="line">drwxr-xr-x   3 root root  4096 Feb 19 10:52 source</span><br><span class="line">drwxr-xr-x   2 root root  4096 Feb 19 10:52 themes</span><br></pre></td></tr></table></figure>
+<ul>
+<li>_config.yml：Hexo项目全局YML配置文件，诸如git、主题等皆会在此配置</li>
+<li>_config.landscape.yml：默认的Landscape主题配置文件，更换Next主题后可删除</li>
+<li>node_modules：放着Hexo基础项目所需的包，安装npm也是为了管理这些包</li>
+<li>*.json：两个json文件里记录了本项目所有包的版本，如果将该项目迁移到Docker或者其他系统中，均需要使用json文件进行构建</li>
+<li>scaffolds：放着各种模板文件，Hexo项目最终是使用静态资源进行部署，将代码提交到GIthub时，也是提交的静态资源文件，而scaffolds则规定了Hexo需要生成静态资源的模板</li>
+<li>source：放着各种本地资源文件，比如md文章文件。理应来说，图片等本地资源也需要放在此处，但在Next等流行主题项目结构里，图片等都是放在themes主题文件夹下的source里</li>
+<li>themes：存放着主题所需的所有文件，如果你下载了两个主题比如ParticleX、Next，则此处也会有两个以主题名字命名的父目录，每个父目录下存放着该主题所需的所有文件</li>
+</ul>
+<hr />
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hexo三连！cl即clean，用于清理静态缓存；g即genrate，用于生成静态资源；s即server，开启hexo本地服务；</span><br><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p><strong>注</strong>：在执行完hexo三连后根目录下会多出一个public文件夹，此文件夹用于存放生成好的静态资源。<br />
+现在使用localhost:4000查看项目是否已经成功部署（localhost即项目宿主机的ip地址，如果部署在虚拟机则是虚拟机对应的ip地址）。<br />
+<img src="https://pic2.zhimg.com/v2-1c3baeecf1ef3bec5c8ef3f14639f68b_r.jpg" alt="Hexo项目成功部署页面效果图" title="图片来源于网络" /></p>
+<p><strong>至此，Hexo项目所有前期工作皆以完成，接下只需要更换主题并加以美化</strong></p>
+<h2 id="hexo-next主题基础配置"><a class="markdownIt-Anchor" href="#hexo-next主题基础配置"></a> Hexo Next主题基础配置</h2>
+<p>这里以流行的Next为例，其他主题同理。其他主题预览请访问<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Themes | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="安装next主题"><a class="markdownIt-Anchor" href="#安装next主题"></a> 安装Next主题</h3>
+<p>本站之前是使用克隆源码到项目中的方式，但使用此方法无法查看Next主题的版本，并且在Hexo7及以后，官方也不推荐此方法，于是便使用了&quot;npm install的方式。在开始前请确保更换了npm镜像，未更换的请自行参考<a href="#%E5%AE%89%E8%A3%85npm">安装npm</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 卸载默认主题</span><br><span class="line">npm uninstall hexo-theme-landscape --save</span><br><span class="line"></span><br><span class="line"># 删除根目录下的默认主题配置yml文件</span><br><span class="line">rm -f _config.landscape.yml</span><br><span class="line"></span><br><span class="line"># 安装Next主题最新版</span><br><span class="line">npm install hexo-theme-next@latest --save</span><br><span class="line"></span><br><span class="line"># 更改主题文件到常用位置</span><br><span class="line">mv -r node_modules/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"># 更改根目录下的_config.yml文件配置，将主题切换为next</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p>观察一下Next主题目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@ubuntu2204:/var/www/hexo-next# ls  themes/next</span><br><span class="line">total 80</span><br><span class="line">-rw-r--r-- 1 root root 29660 Feb 19 13:03 _config.yml</span><br><span class="line">drwxr-xr-x 4 root root  4096 Feb 19 13:03 docs</span><br><span class="line">drwxr-xr-x 2 root root  4096 Feb 19 13:03 languages</span><br><span class="line">drwxr-xr-x 6 root root  4096 Feb 19 13:03 layout</span><br><span class="line">-rw-r--r-- 1 root root  2955 Feb 19 13:03 LICENSE.md</span><br><span class="line">-rw-r--r-- 1 root root  1148 Feb 19 13:03 package.json</span><br><span class="line">-rw-r--r-- 1 root root  9484 Feb 19 13:03 README.md</span><br><span class="line">drwxr-xr-x 6 root root  4096 Feb 19 13:03 scripts</span><br><span class="line">drwxr-xr-x 5 root root  4096 Feb 19 13:03 source</span><br><span class="line">-rw-r--r-- 1 root root  4836 Feb 19 13:03 _vendors.yml</span><br></pre></td></tr></table></figure>
+<ul>
+<li>_config.yml：通常是配置文件，用于存储整个项目或主题的各种配置参数，比如站点信息、主题相关设置等</li>
+<li><span class="exturl" data-url="aHR0cDovL0xJQ0VOU0UubWQ=">LICENSE.md<i class="fa fa-external-link-alt"></i></span>：包含项目的许可证信息，说明项目的使用许可条款等</li>
+<li>package.json：记录项目的元数据，包括依赖项、脚本命令等信息，用于管理项目的依赖和构建等操作。</li>
+<li><span class="exturl" data-url="aHR0cDovL1JFQURNRS5tZA==">README.md<i class="fa fa-external-link-alt"></i></span>：一般是项目的说明文档，介绍项目是什么、如何使用、安装步骤等相关信息，起到引导用户了解和使用项目的作用</li>
+<li>_vendors.yml：与外部供应商、插件或者特定资源相关的配置文件</li>
+<li>docs：通常用于存放文档相关的内容，比如项目的使用文档、说明文档等相关的源文件</li>
+<li>languages：用于存放多语言相关的配置或文件，以支持项目的多语言特性</li>
+<li>layout：存放页面布局相关的文件，用于定义网站页面的结构和样式布局</li>
+<li>scripts：用来存放脚本文件，可能是自动化脚本、构建脚本、测试脚本等，用于辅助项目的开发、部署等流程</li>
+<li>source：存放项目源文件的目录，比如主题的模板文件、内容文件等。</li>
+</ul>
+<hr />
+<p>hexo三连后刷新浏览器页面，观察主题是否切换成功<br />
+<img src="https://theme-next.js.org/images/next-default-scheme.png" alt="Hexo Next主题成功部署示意图" title="图片来源于网络" /></p>
+<h3 id="hexo根目录_configyml基础配置"><a class="markdownIt-Anchor" href="#hexo根目录_configyml基础配置"></a> Hexo根目录_config.yml基础配置</h3>
+<p><strong>注</strong>：Hexo根目录下的_config.yml为全局配置文件，会覆盖主题目录下的_config.yml</p>
+<ul>
+<li>
+<p>Site</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: 本站的网站名称</span><br><span class="line">subtitle: &#x27;会显示在title下侧作为副标题&#x27;</span><br><span class="line">description: &#x27;网站描述，会显示侧边栏author下方&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: 作者，会显示在侧边栏头像下方</span><br><span class="line">language: 网站语言，默认跟随浏览器语言</span><br><span class="line">timezone: &#x27;&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Deployment</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">  type: git  </span><br><span class="line">  repository: git@github.com:FavorLvzi/FavorLvzi.github.io.git </span><br><span class="line">  # 因为我的hexo项目有两个主题的项目，并且都在同一个仓库下，所以这里我设置了两个分支，另一个为hexo/particle ，这里使用hexo/demo作为本文演示分支</span><br><span class="line">  branch: hexo/demo</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Writing</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 加入以下内容</span><br><span class="line">highlight:  </span><br><span class="line">  line_number: false #取消代码块行号显示  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><em>本站额外添加的内容</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在页面角落添加看板娘  </span><br><span class="line">live2d:   </span><br><span class="line">  enable: true  </span><br><span class="line">  scriptFrom: local  </span><br><span class="line">  pluginRootPath: live2dw/  </span><br><span class="line">  pluginJsPath: lab/  </span><br><span class="line">  pluginModelPath: assets/  </span><br><span class="line">  tagMode: false  </span><br><span class="line">  debug: false  </span><br><span class="line">  model:  </span><br><span class="line">    #添加模型的名字  </span><br><span class="line">    use: live2d-widget-model-shizuku  </span><br><span class="line">  display:   </span><br><span class="line">    position: right  </span><br><span class="line">    hOffset: 360  # 水平偏移量（正数向右，负数向左,单位px）  </span><br><span class="line">  mobile:  </span><br><span class="line">    show: true  </span><br><span class="line">  react:  </span><br><span class="line">    opacity: 0.9</span><br><span class="line">    </span><br><span class="line"># 安装live2d模型支持</span><br><span class="line">npm install hexo-helper-live2d --save</span><br><span class="line"># 安装你所需的live2d具体的模型,这里以本站shizuku为例</span><br><span class="line">npm install live2d-widget-model-shizuku --save </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用hexo-tag-aplayer插件并添加MeingJS 支持,在文章页面插入网易云音乐 </span><br><span class="line">aplayer:  </span><br><span class="line">  meting: true</span><br><span class="line"></span><br><span class="line"># 安装 hexo-tag-aplayer</span><br><span class="line">npm install hexo-tag-aplayer --save</span><br><span class="line"></span><br><span class="line"># 在文章中使用插件插入音乐</span><br><span class="line">&#123;% meting  &quot;9911211145&quot; &quot;netease&quot; &quot;playlist&quot; &quot;volume:0.3&quot; %&#125;</span><br><span class="line"></span><br><span class="line"># 在非文章页面使用外链插入音乐（无需使用aplayer插件）</span><br><span class="line"># 以网易云音乐为例，登录网易云音乐网页版，找到音乐或者列表，然后点击生成外链</span><br><span class="line"># 接着将该iframe标签包裹到div板块中，插入你需要显示音乐的页面的代码中，示例如下</span><br><span class="line">&lt;div id=&quot;music163player&quot;&gt;</span><br><span class="line">  &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=歌曲ID&amp;auto=1&amp;height=66&quot;&gt;</span><br><span class="line">  &lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装hexo-excerpt，实现文章自动折叠 </span><br><span class="line">npm install hexo-excerpt --save </span><br><span class="line"></span><br><span class="line"># 参考https://shirynl.github.io/2025/01/27/unfold-home/#more  </span><br><span class="line">excerpt:  </span><br><span class="line">  depth: 2  # 摘录的深度，即生成的摘录内容所包含的层级标题数量  </span><br><span class="line">  excerpt_excludes: []  # 不生成摘录的页面列表  </span><br><span class="line">  more_excludes: [] # 不使用&lt;!-- more --&gt;标签的页面列表  </span><br><span class="line">  hideWholePostExcerpts: true # 是否隐藏全文摘录（当文章较短时，可能不需要摘录）</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="hexo主题目录下的_configyml配置"><a class="markdownIt-Anchor" href="#hexo主题目录下的_configyml配置"></a> Hexo主题目录下的_config.yml配置</h3>
+<p>该主题目录下的yml配置文件主题作者已经写得非常详细了，详细配置建议参考园原配置文件。下面列举我所更改的配置，供诸君参考。在该yml文件中，文件的目录全为相对路径，并且默认父目录为（可以更改）为项目根目录下的themes/next/source/。</p>
+<ul>
+<li>
+<p>开启主页顶部菜单栏</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  # 这里我只开启了四个标签栏，可根据所需自行调整</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br></pre></td></tr></table></figure>
+<p>在hexo根目录下的source中分别添加categories与tags目录，然后在两个目录下分别建一个index.md文件，具体格式如下(注意顶部和底部的- - -)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2025-01-23 09:04:13</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2025-01-23 09:04:13</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>网站的浏览器小标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 本站并没有对此作任何修改，如果你需要修改浏览器标签，只需将不同大小的图片放在themes/next/source/images里即可</span><br><span class="line">favicon:  </span><br><span class="line">  small: /images/favicon-16x16-next.png  </span><br><span class="line">  medium: /images/favicon-32x32-next.png  </span><br><span class="line">  apple_touch_icon: /images/apple-touch-icon-next.png  </span><br><span class="line">  safari_pinned_tab: /images/logo.svg  </span><br><span class="line">  android_manifest: /images/manifest.json  </span><br><span class="line">  ms_browserconfig: /images/browserconfig.xml</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>网站主题风格手动切换</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 默认为Muse、其中Muse与Mist为单边栏且风格偏简单，Pisces与Gemini为双边栏且整体风格更为丰富</span><br><span class="line">scheme: Muse  </span><br><span class="line">#scheme: Mist  </span><br><span class="line">#scheme: Pisces  </span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>侧边栏</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:  </span><br><span class="line">  enable: true  </span><br><span class="line">  position: right # 边栏浮动位置.</span><br><span class="line">  display: always # 有四种模式可选</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/avatar.png #头像图片存储位置</span><br><span class="line">  rotated: true # 头像随鼠标转动</span><br><span class="line"></span><br><span class="line"># 社交链接，以图标形式呈现在侧边栏中部</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/FavorLvzi/FavorLvzi.github.io || fab fa-github  </span><br><span class="line">  E-Mail: mailto:xxx@gmail.com || fa fa-envelope  </span><br><span class="line">  QQ: mailto:xxx@qq.com  || fab fa-qq</span><br><span class="line"></span><br><span class="line"># 友情链接，以文字链接形式呈现在侧边栏底部</span><br><span class="line">links:  </span><br><span class="line">  Particle主题博客: https://favorlvzi-hexo-particle.netlify.app/  </span><br><span class="line">  阿虚の储物间: https://axutongxue.onrender.com  </span><br><span class="line">  本物のSteam: https://store.steampowered.com</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>切换代码块显示风格</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  highlight_theme: night bright # 有多种模式供选择，这里为黑底白字风格</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>让Next主题支持数学公式显示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 这里使用katex，需要安装hexo-renderer-markdown-it-plus以支持katex</span><br><span class="line">math:</span><br><span class="line">  per_page: true</span><br><span class="line">  mathjax:  </span><br><span class="line">    enable: false  </span><br><span class="line">    mhchem: false</span><br><span class="line">  katex:  </span><br><span class="line">    enable: true  </span><br><span class="line">    copy_tex: false</span><br><span class="line"></span><br><span class="line"># 卸载默认的hexo-renderer-marked</span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line"># 安装hexo-renderer-markdown-it-plus</span><br><span class="line">npm install hexo-renderer-markdown-it-plus --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>开启站点卜算子统计(经常失效)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">busuanzi_count:  </span><br><span class="line">  enable: true  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>开启页面加载特效</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pace:  </span><br><span class="line">  enable: true  </span><br><span class="line">  theme: flat-top  # 更多加载特效参考原配置文件</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>开启鼠标点击特效(该设置可代替<a href="#%E4%B8%BAnext%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E8%83%8C%E6%99%AF">背景</a>图片)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 鼠标点击特效库  </span><br><span class="line">three:  </span><br><span class="line">  enable: true  </span><br><span class="line">  three_waves: true  </span><br><span class="line">  canvas_lines: true  </span><br><span class="line">  canvas_sphere: true</span><br><span class="line"></span><br><span class="line"># 鼠标点击特效，这里使用canvas_ribbon,随机加载  </span><br><span class="line">canvas_ribbon:  </span><br><span class="line">  enable: true  </span><br><span class="line">  size: 300  </span><br><span class="line">  alpha: 0.6 </span><br><span class="line">  zIndex: -1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h2>
+<h3 id="为next主题更换背景"><a class="markdownIt-Anchor" href="#为next主题更换背景"></a> 为Next主题更换背景</h3>
+<p><strong>注</strong>：之前是使用的克隆源码方式安装的next主题，但这一步始终无法实现。因此强烈推荐使用npm install的方式。如果使用了前一种方法，最好从头开始部署项目。<br />
+在项目根目录source/_data/styles.styl里自定义样式文件（该文件需自行创建），具体内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 设置全局背景图片</span><br><span class="line">body &#123;</span><br><span class="line">  // 自定义背景图片需放在next主题项目下</span><br><span class="line">  background: url(/images/background.png) no-repeat center center fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.post-block &#123;</span><br><span class="line">  // 为文章添加阴影效果</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">  margin-bottom: 60px;</span><br><span class="line">  padding: 25px;</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);</span><br><span class="line">  // 过渡动画</span><br><span class="line">  transition: box-shadow 0.3s ease-in-out;</span><br><span class="line">  // 博客内容透明化</span><br><span class="line">  background: rgba(255,255,255,0.95) none repeat scroll !important;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 鼠标悬停时加深阴影</span><br><span class="line">.post-block:hover &#123;</span><br><span class="line">  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在项目根目录_config.yml里开启自定义样式文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  style: source/_data/styles.styl</span><br></pre></td></tr></table></figure>
+<h3 id="hexo项目文章的使用"><a class="markdownIt-Anchor" href="#hexo项目文章的使用"></a> Hexo项目文章的使用</h3>
+<p>新建文章</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new &quot;你的文章标题&quot;</span><br></pre></td></tr></table></figure>
+<p>创建完成后可在根目录下source/_post/里找到“<span class="exturl" data-url="aHR0cDovL3huLS02cXF4MzVjNHhiMzZ4cTllajM1Yy5tZA==">你的文章标题.md<i class="fa fa-external-link-alt"></i></span>”文件，查看一下md文件顶部固定版式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---  </span><br><span class="line">title:  文章标题,决定了在页面上显示的文章的标题，和文件的名称不一样</span><br><span class="line">date: 2025-01-03 15:53:16   默认为文件创建的日期，文章默认会以此在页面排序</span><br><span class="line">categories:  默认没有，需要自己添加，格式如左边所示。添加后可以在分类页面查看详情</span><br><span class="line"> - Music </span><br><span class="line"> - 日语 </span><br><span class="line">tag:  格式如左边所示,添加后可以在标签页面查看详情</span><br><span class="line">  - 国语  </span><br><span class="line">  - 日语</span><br><span class="line">top: 指定置顶文章顺序，但未生效</span><br><span class="line">description: 可以指定文章简介，开启时在主页面会以此简介代替文章内容，使用此项时需要先卸载上面提到的hexo-excerpt插件并删除相关配置</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p><strong>注</strong>:上述部分是包含在两个&quot;—“中间的，被”—&quot;包含的部分规定了文章各项重要标签，这些内容在部署时会被hexo识别，并按照模板生成对应静态资源。</p>
+<h2 id="将项目代码提交到github"><a class="markdownIt-Anchor" href="#将项目代码提交到github"></a> 将项目代码提交到Github</h2>
+<h3 id="事前准备"><a class="markdownIt-Anchor" href="#事前准备"></a> 事前准备</h3>
+<ul>
+<li>注册<a href="%5BGitHub%5D(https://github.com/)">Github</a>账号(<s>略</s>)</li>
+<li>创建Github仓库<br />
+1.登陆后在Github主页面右上角点击+号，然后选择“New repository”新建仓库<br />
+2.Owner默认设置为自己，状态设置为Public<br />
+3.选择一个license，然后点击创建</li>
+<li>在<a href="#%E5%AE%89%E8%A3%85git">安装Git</a>中设置的邮箱与用户要与此处一一对应</li>
+<li>在<a href="#hexo%E6%A0%B9%E7%9B%AE%E5%BD%95_config.yml%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE">Deployment</a>部分的仓库名也要与此处对应</li>
+<li>设置分支，默认为master或者main（可选）<br />
+1.进入需要设置分支厂库的“code”页面，点击左上角的分支下拉框<br />
+2.点击“View all branches”,在跳转后的页面中点击“New branch”新建分支（如<a href="#hexo%E6%A0%B9%E7%9B%AE%E5%BD%95_config.yml%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE">Deployment</a>这里我设置新的hexo/demo分支），你可以选择删除默认的分支，并将新建的分支设为新的默认分支，这样提交的代码就会保存到仓库的新分支里。假如你要使用Github page部署静态文件，并且有几个主题的项目需要提交到同一仓库中。管理好分支是很有必要的</li>
+<li>安装必要插件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="使用ssh方式提交代码"><a class="markdownIt-Anchor" href="#使用ssh方式提交代码"></a> 使用SSH方式提交代码</h3>
+<ul>
+<li>
+<p>生成密钥，默认位置在~/.ssh。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># 若系统不支持 Ed25519 算法，也可以使用 RSA 算法</span><br><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>生成完毕后在~/.ssh文件夹下找到id_rsa.pub公共密钥</p>
+</li>
+<li>
+<p>进入Github设置(非仓库设置)，找到“SSH and GPG keys”</p>
+</li>
+<li>
+<p>点击“New SSH key”,将id_rsa.pub内容复制到其中，保存</p>
+</li>
+<li>
+<p>验证 SSH 连接</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line"></span><br><span class="line"># 结果如下则说明成功</span><br><span class="line">Hi username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用hexo deploy提交代码到Github仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># d即deploy，用于提交代码到Git仓库</span><br><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="将hexo项目部署到netlify平台"><a class="markdownIt-Anchor" href="#将hexo项目部署到netlify平台"></a> 将Hexo项目部署到Netlify平台</h2>
+<p><strong>总述</strong>：Netlify是一个流行的跨国代码部署平台，支持免费的个人版。使用Netlify可以快速高效部署网站，在国内可以直接访问并且访问速度也十分可观。</p>
+<h3 id="注册或登录netlify"><a class="markdownIt-Anchor" href="#注册或登录netlify"></a> 注册或登录<span class="exturl" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20v">Netlify<i class="fa fa-external-link-alt"></i></span></h3>
+<p><strong>注</strong>：该过程需要授权Github或者其他Git仓库账号，请允许</p>
+<h3 id="创建需要部署的项目"><a class="markdownIt-Anchor" href="#创建需要部署的项目"></a> 创建需要部署的项目</h3>
+<ul>
+<li>点击左侧“Sites”选项卡，然后点击右侧“Add new site”下拉框，选择“Import a exiting project”</li>
+<li>选择Github或者GitLab、Bitbucket、Azure DevOps，然后进行授权</li>
+<li>在“Let’s deploy your project with…”页面设置：<br />
+1.Site name，注意该站点名字会影响最终访问的URL地址，务必认真填写<br />
+2.Branch to deploy，选择需要部署仓库的具体分支，这里直接选择新分支或者默认分支即可</li>
+<li>点击Deploy以保存项目</li>
+</ul>
+<h3 id="netlify的使用"><a class="markdownIt-Anchor" href="#netlify的使用"></a> Netlify的使用</h3>
+<p>创建完项目后Netlify便会立即开始部署，在“Sites”选项卡中会展示所有的项目。选择一个项目点击便会进入到对应的项目中，在“Sites/your-project-name”项目页面，你可看见项目的部署记录，当项目部署显示Published则表示部署成功。每次使用&quot;hexo d&quot;提交代码后，Netlify都会自动重新部署项目。</p>
+<hr />
+<img width="20%" height="auto" src="https://s1.aigei.com/src/img/gif/38/38840a7f90994f81b9324f389924f632.gif?imageMogr2/auto-orient/thumbnail/!282x270r/gravity/Center/crop/282x270/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:MRlwip6QqLlu7dc766Z8XWjLFE4=">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/" rel="tag"># 日常工作心得</a>
+              <a href="/tags/Hexo-Next/" rel="tag"># Hexo Next</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/17/use-docker/" rel="prev" title="Ubuntu 22.04 Docker的安装与简单使用">
+                  <i class="fa fa-angle-left"></i> Ubuntu 22.04 Docker的安装与简单使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/04/01/use-jenkins/" rel="next" title="Linux环境下Jenkins的安装部署">
+                  Linux环境下Jenkins的安装部署 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">清莠</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+<script src="/live2dw/lab/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lab/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"left","hOffset":30},"mobile":{"show":true},"react":{"opacity":1},"log":false});</script></body>
+</html>
